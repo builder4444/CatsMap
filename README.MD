@@ -1,4 +1,4 @@
-🐱 CatsMap
+#🐱 CatsMap
 
     Cute, private LAN chat — like Discord, but yours.
 
