@@ -11,6 +11,7 @@ export function ChatApp() {
   const { send } = useWebSocket()
   const { setOnlineUsers, activeChannelId, channels, setActiveChannelId, searchOpen, setSearchOpen } = useStore()
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
+  const [mobileMembersOpen, setMobileMembersOpen] = useState(false)
 
   useEffect(() => {
     if (channels.length > 0 && !activeChannelId) {
@@ -32,14 +33,33 @@ export function ChatApp() {
     setMobileSidebarOpen(false)
   }
 
+  function closeMobileMembers() {
+    setMobileMembersOpen(false)
+  }
+
+  const layoutClass = [
+    'chat-app-layout',
+    mobileSidebarOpen ? 'mobile-sidebar-open' : '',
+    mobileMembersOpen ? 'mobile-members-open' : '',
+  ].filter(Boolean).join(' ')
+
+  const showBackdrop = mobileSidebarOpen || mobileMembersOpen
+
   return (
-    <div className={`chat-app-layout${mobileSidebarOpen ? ' mobile-sidebar-open' : ''}`}>
-      {mobileSidebarOpen && (
-        <div className="mobile-sidebar-backdrop" onClick={closeMobileSidebar} />
+    <div className={layoutClass}>
+      {showBackdrop && (
+        <div
+          className="mobile-sidebar-backdrop"
+          onClick={() => { closeMobileSidebar(); closeMobileMembers() }}
+        />
       )}
       <Sidebar send={send} onMobileClose={closeMobileSidebar} />
-      <ChatArea send={send} onMobileMenuOpen={() => setMobileSidebarOpen(true)} />
-      <MemberList send={send} />
+      <ChatArea
+        send={send}
+        onMobileMenuOpen={() => { setMobileSidebarOpen(true); setMobileMembersOpen(false) }}
+        onMobileMembersOpen={() => { setMobileMembersOpen(true); setMobileSidebarOpen(false) }}
+      />
+      <MemberList send={send} onMobileClose={closeMobileMembers} />
       {searchOpen && (
         <MessageSearch
           onClose={() => setSearchOpen(false)}

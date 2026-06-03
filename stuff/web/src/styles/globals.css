@@ -316,6 +316,45 @@ iframe[src*="replit.com/badge"] {
 }
 .mobile-menu-btn:hover { background: rgba(255,255,255,0.1); }
 
+/* ── Mobile members button ───────────────────────────────────────────────────*/
+.mobile-members-btn {
+  display: none;
+  position: relative;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  color: rgba(240,230,255,0.8);
+  font-size: 18px;
+  padding: 6px 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+  align-items: center;
+  gap: 4px;
+}
+.mobile-members-btn:hover { background: rgba(255,255,255,0.1); }
+.mobile-members-count {
+  font-size: 10px;
+  font-weight: 800;
+  color: rgba(240,230,255,0.55);
+  line-height: 1;
+}
+
+/* ── Member list close button ────────────────────────────────────────────────*/
+.member-list-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: rgba(240,230,255,0.45);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 2px;
+  border-radius: 6px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.member-list-close-btn:hover { color: #f0e6ff; }
+
 /* ── Mobile sidebar backdrop ─────────────────────────────────────────────────*/
 .mobile-sidebar-backdrop {
   display: none;
@@ -323,14 +362,28 @@ iframe[src*="replit.com/badge"] {
 
 /* ── Mobile styles ───────────────────────────────────────────────────────────*/
 @media (max-width: 700px) {
+  /* Show mobile toggle buttons */
   .mobile-menu-btn {
+    display: flex;
+  }
+
+  .mobile-members-btn {
+    display: flex;
+  }
+
+  /* Hide desktop-only header elements */
+  .mobile-hide-export,
+  .mobile-hide-online {
+    display: none !important;
+  }
+
+  /* Show close buttons inside panels */
+  .sidebar-close-btn,
+  .member-list-close-btn {
     display: block;
   }
 
-  .sidebar-close-btn {
-    display: block;
-  }
-
+  /* Sidebar slides in from the left */
   .sidebar-panel {
     position: fixed;
     top: 0;
@@ -346,6 +399,24 @@ iframe[src*="replit.com/badge"] {
     transform: translateX(0);
   }
 
+  /* Member list slides in from the right */
+  .member-list-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    width: 260px;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    display: flex;
+  }
+
+  .mobile-members-open .member-list-panel {
+    transform: translateX(0);
+  }
+
+  /* Shared backdrop */
   .mobile-sidebar-backdrop {
     display: block;
     position: fixed;
@@ -355,15 +426,18 @@ iframe[src*="replit.com/badge"] {
     backdrop-filter: blur(2px);
   }
 
-  .member-list-panel {
-    display: none;
-  }
-
+  /* Input area improvements */
   .chat-input::placeholder {
     font-size: 13px;
   }
 
   .media-thumb {
     max-width: 100%;
+  }
+
+  /* Reduce header padding on mobile */
+  .modal-backdrop {
+    padding: 16px;
+    align-items: flex-end;
   }
 }

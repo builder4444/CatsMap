@@ -14,9 +14,10 @@ function statusColor(status: UserStatus = 'online') {
 
 interface Props {
   send: (msg: object) => void
+  onMobileClose?: () => void
 }
 
-export function MemberList({ send }: Props) {
+export function MemberList({ send, onMobileClose }: Props) {
   const { onlineUsers, currentUser, setActiveDmUserId, addNotification } = useStore()
   const [loading, setLoading] = useState<string | null>(null)
 
@@ -48,14 +49,19 @@ export function MemberList({ send }: Props) {
         flexShrink: 0,
       }}>
         <div style={{
-          fontSize: '11px',
-          fontWeight: 800,
-          color: 'rgba(240,230,255,0.35)',
-          textTransform: 'uppercase',
-          letterSpacing: '0.1em',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           marginBottom: '8px',
         }}>
-          Online — {sorted.length}
+          <div style={{
+            fontSize: '11px',
+            fontWeight: 800,
+            color: 'rgba(240,230,255,0.35)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+          }}>
+            Online — {sorted.length}
+          </div>
+          <button className="member-list-close-btn" onClick={onMobileClose} aria-label="Close members">✕</button>
         </div>
         {currentUser && (
           <select

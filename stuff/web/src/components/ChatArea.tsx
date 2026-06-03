@@ -9,9 +9,10 @@ import { normalizeMessage } from '../utils/message'
 interface Props {
   send: (msg: object) => void
   onMobileMenuOpen?: () => void
+  onMobileMembersOpen?: () => void
 }
 
-export function ChatArea({ send, onMobileMenuOpen }: Props) {
+export function ChatArea({ send, onMobileMenuOpen, onMobileMembersOpen }: Props) {
   const {
     channels, activeChannelId, activeDmUserId, messages,
     setMessages, dmConversations, typingUsers, currentUser,
@@ -338,13 +339,24 @@ export function ChatArea({ send, onMobileMenuOpen }: Props) {
         </div>
         <div style={{ flex: 1 }} />
         {activeChannelId && (
-          <button onClick={() => handleExport('json')} className="btn-ghost" style={{ padding: '6px 10px', fontSize: '11px' }} title="Export">
+          <button onClick={() => handleExport('json')} className="btn-ghost mobile-hide-export" style={{ padding: '6px 10px', fontSize: '11px' }} title="Export">
             💾
           </button>
         )}
-        <div style={{ fontSize: '12px', color: 'rgba(240,230,255,0.45)' }}>
+        <div className="mobile-hide-online" style={{ fontSize: '12px', color: 'rgba(240,230,255,0.45)' }}>
           {onlineUsers.length} online
         </div>
+        <button
+          className="mobile-members-btn"
+          onClick={onMobileMembersOpen}
+          aria-label="Open members"
+          title={`${onlineUsers.length} online`}
+        >
+          👥
+          {onlineUsers.length > 0 && (
+            <span className="mobile-members-count">{onlineUsers.length}</span>
+          )}
+        </button>
       </div>
 
       {pinned.length > 0 && (
