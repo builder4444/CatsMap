@@ -7,6 +7,7 @@ use uuid::Uuid;
 
 use crate::auth::AccountStore;
 use crate::models::{User, Channel, Message, CustomEmoji, ChannelPermissions, UserStatus};
+use crate::persist::PersistedState;
 
 pub type Tx = broadcast::Sender<String>;
 
@@ -49,25 +50,6 @@ impl AppState {
         admin_username: Option<&str>,
         admin_password: Option<&str>,
     ) -> Self {
-        let network_id = Uuid::new_v4().to_string();
-        let channels: DashMap<String, Channel> = DashMap::new();
-
-        for (name, desc) in [
-            ("general",   "Everyone's welcome here 🐾"),
-            ("media-den", "Share videos, images & files 🎨"),
-            ("random",    "Anything goes 🐱"),
-        ] {
-            let id = Uuid::new_v4().to_string();
-            channels.insert(id.clone(), Channel {
-                id,
-                name: name.to_string(),
-                description: desc.to_string(),
-                network_id: network_id.clone(),
-                category: Some("Channels".to_string()),
-                permissions: ChannelPermissions::default(),
-            });
-        }
-
         let upload_dir = cfg.upload_dir.clone();
         let data_dir = cfg.data_dir.clone();
         std::fs::create_dir_all(&upload_dir).ok();
@@ -82,11 +64,59 @@ impl AppState {
             }
         }
 
+        // Try to load saved state
+        let saved = PersistedState::load(&data_dir);
+
+        let (network_id, network_name, channels, messages, pinned, custom_emojis) =
+            if let Some(s) = saved {
+                let channels: DashMap<String, Channel> = DashMap::new();
+                for ch in s.channels {
+                    channels.insert(ch.id.clone(), ch);
+                }
+                (
+                    s.network_id,
+                    s.network_name,
+                    channels,
+                    s.messages,
+                    s.pinned,
+                    s.custom_emojis,
+                )
+            } else {
+                // Fresh start — create default channels
+                let network_id = Uuid::new_v4().to_string();
+                let channels: DashMap<String, Channel> = DashMap::new();
+
+                for (name, desc) in [
+                    ("general",   "Everyone's welcome here 🐾"),
+                    ("media-den", "Share videos, images & files 🎨"),
+                    ("random",    "Anything goes 🐱"),
+                ] {
+                    let id = Uuid::new_v4().to_string();
+                    channels.insert(id.clone(), Channel {
+                        id,
+                        name: name.to_string(),
+                        description: desc.to_string(),
+                        network_id: network_id.clone(),
+                        category: Some("Channels".to_string()),
+                        permissions: ChannelPermissions::default(),
+                    });
+                }
+
+                (
+                    network_id,
+                    cfg.network_name.clone(),
+                    channels,
+                    HashMap::new(),
+                    HashMap::new(),
+                    vec![],
+                )
+            };
+
         Self {
             network_id,
-            network_name:    Mutex::new(cfg.network_name.clone()),
+            network_name:    Mutex::new(network_name),
             connected_users: DashMap::new(),
-            messages:        Arc::new(Mutex::new(HashMap::new())),
+            messages:        Arc::new(Mutex::new(messages)),
             channels,
             share_codes:     DashMap::new(),
             bridged_networks: DashMap::new(),
@@ -95,11 +125,30 @@ impl AppState {
             data_dir,
             max_upload_size,
             accounts,
-            pinned: Arc::new(Mutex::new(HashMap::new())),
+            pinned: Arc::new(Mutex::new(pinned)),
             read_receipts: Arc::new(Mutex::new(HashMap::new())),
-            custom_emojis: Mutex::new(vec![]),
+            custom_emojis: Mutex::new(custom_emojis),
             rate_limit_per_minute: 30,
         }
+    }
+
+    /// Persist all state to data_dir/state.json atomically.
+    pub fn save_to_disk(&self) {
+        let channels: Vec<Channel> = self.channels.iter().map(|e| e.value().clone()).collect();
+        let messages = self.messages.lock().unwrap().clone();
+        let pinned   = self.pinned.lock().unwrap().clone();
+        let custom_emojis = self.custom_emojis.lock().unwrap().clone();
+        let network_name = self.network_name.lock().unwrap().clone();
+
+        let state = PersistedState {
+            network_id: self.network_id.clone(),
+            network_name,
+            channels,
+            messages,
+            pinned,
+            custom_emojis,
+        };
+        state.save(&self.data_dir);
     }
 
     pub fn get_network_name(&self) -> String {
