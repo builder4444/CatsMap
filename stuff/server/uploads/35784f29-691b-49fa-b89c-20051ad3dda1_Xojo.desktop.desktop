@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Xojo
+GenericName=
+Comment=
+Exec=/opt/xojo/Xojo
+Type=Application
+Icon=/opt/xojo/xojo.xpm
+Terminal=false

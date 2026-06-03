@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Zen
+GenericName=
+Comment=
+Exec=/opt/zen/zen
+Type=Application
+Icon=/opt/zen/browser/chrome/icons/default/default128.png
+Terminal=false

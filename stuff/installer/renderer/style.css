@@ -1,0 +1,322 @@
+/* ── Reset & base ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0a1a;
+  --surface: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.10);
+  --purple: #d946ef;
+  --purple-dim: rgba(168,85,247,0.3);
+  --text: #f0e6ff;
+  --text-dim: rgba(240,230,255,0.5);
+  --radius: 14px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text);
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+body {
+  background: radial-gradient(ellipse at top left, rgba(168,85,247,0.18) 0%, transparent 60%),
+              radial-gradient(ellipse at bottom right, rgba(236,72,153,0.14) 0%, transparent 60%),
+              #0d0a1a;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ── Title bar ─────────────────────────────────────────────────────────────── */
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  -webkit-app-region: drag;
+  border-bottom: 1px solid var(--border);
+  background: rgba(13,10,26,0.7);
+  backdrop-filter: blur(12px);
+}
+.title-bar-logo {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-dim);
+  letter-spacing: 0.03em;
+}
+.title-bar-controls {
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+.title-btn {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  border: none;
+  background: var(--surface);
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 12px;
+  font-family: monospace;
+  transition: background 0.15s, color 0.15s;
+}
+.title-btn:hover { background: rgba(255,255,255,0.12); color: var(--text); }
+.title-btn.close:hover { background: rgba(239,68,68,0.25); color: #fca5a5; }
+
+/* ── Wizard pages ──────────────────────────────────────────────────────────── */
+#app {
+  height: calc(100% - 49px);
+  position: relative;
+  overflow: hidden;
+}
+
+.page {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 32px 48px;
+  gap: 14px;
+  text-align: center;
+  animation: fadeIn 0.25s ease;
+}
+.page.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Welcome page ──────────────────────────────────────────────────────────── */
+.page-hero { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.logo-emoji {
+  font-size: 64px;
+  line-height: 1;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+h1 { font-size: 32px; font-weight: 900; letter-spacing: -0.5px; }
+.gradient-text {
+  background: linear-gradient(135deg, #e879f9, #a78bfa, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subtitle { font-size: 14px; color: var(--text-dim); font-weight: 500; line-height: 1.5; max-width: 380px; }
+.subtitle.small { font-size: 12px; }
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 4px 0;
+}
+.feature-chip {
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 99px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #d8b4fe;
+}
+
+/* ── Inner pages ───────────────────────────────────────────────────────────── */
+.page-icon {
+  font-size: 44px;
+  line-height: 1;
+}
+.installing-icon { animation: spin 2s linear infinite; }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text);
+}
+.desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 380px;
+}
+
+/* ── Form elements ─────────────────────────────────────────────────────────── */
+.field-group {
+  width: 100%;
+  max-width: 380px;
+  text-align: left;
+}
+.field-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.label-hint { font-weight: 500; text-transform: none; color: rgba(240,230,255,0.3); }
+
+.field-input {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  color: var(--text);
+  padding: 10px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  max-width: 380px;
+}
+.field-input:focus {
+  border-color: rgba(168,85,247,0.6);
+  box-shadow: 0 0 0 3px rgba(168,85,247,0.12);
+}
+.field-input::placeholder { color: rgba(240,230,255,0.3); }
+.field-input:read-only { cursor: default; }
+
+.dir-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  max-width: 380px;
+}
+.dir-input { flex: 1; }
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-weight: 500;
+}
+.checkbox-label input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--purple); }
+
+/* ── IP list ───────────────────────────────────────────────────────────────── */
+.ip-list {
+  background: rgba(52,211,153,0.07);
+  border: 1px solid rgba(52,211,153,0.2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #6ee7b7;
+  font-family: 'JetBrains Mono', monospace;
+  width: 100%;
+  max-width: 380px;
+  text-align: left;
+  line-height: 1.8;
+}
+
+/* ── Review card ───────────────────────────────────────────────────────────── */
+.review-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  width: 100%;
+  max-width: 380px;
+  text-align: left;
+  font-size: 13px;
+  line-height: 2;
+}
+.review-row { display: flex; justify-content: space-between; gap: 8px; }
+.review-key { color: var(--text-dim); font-weight: 600; }
+.review-val { color: var(--text); font-weight: 700; text-align: right; }
+
+/* ── Progress ──────────────────────────────────────────────────────────────── */
+.progress-bar-wrap {
+  width: 100%;
+  max-width: 380px;
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #d946ef, #7c3aed);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+.progress-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+/* ── Done page ─────────────────────────────────────────────────────────────── */
+.done-steps {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 14px 20px;
+  width: 100%;
+  max-width: 380px;
+  text-align: left;
+  font-size: 13px;
+  line-height: 2;
+  color: rgba(240,230,255,0.7);
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────────── */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 380px;
+  margin-top: 4px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #d946ef, #7c3aed);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 22px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(168,85,247,0.4);
+}
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.btn-wide { padding: 13px 40px; font-size: 15px; }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #c4b5fd;
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.08); color: var(--text); }
