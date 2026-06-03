@@ -32,7 +32,7 @@ export function MemberList({ send }: Props) {
   }
 
   return (
-    <div style={{
+    <div className="member-list-panel" style={{
       width: '220px',
       flexShrink: 0,
       height: '100%',

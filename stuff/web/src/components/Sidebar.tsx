@@ -6,9 +6,10 @@ import { DesktopSettingsModal } from './DesktopSettingsModal'
 
 interface Props {
   send: (msg: object) => void
+  onMobileClose?: () => void
 }
 
-export function Sidebar({ send }: Props) {
+export function Sidebar({ send, onMobileClose }: Props) {
   const {
     networkName, channels, activeChannelId, setActiveChannelId,
     activeDmUserId, dmConversations, unreadCounts, currentUser, setSearchOpen,
@@ -21,6 +22,16 @@ export function Sidebar({ send }: Props) {
   const dmList = Object.values(dmConversations)
   const categories = [...new Set(sortedChannels.map(c => c.category || 'Channels'))]
 
+  function handleChannelClick(channelId: string) {
+    setActiveChannelId(channelId)
+    onMobileClose?.()
+  }
+
+  function handleDmClick(userId: string) {
+    useStore.getState().setActiveDmUserId(userId)
+    onMobileClose?.()
+  }
+
   function renderChannel(channel: typeof channels[0]) {
     const unread = unreadCounts[channel.id] ?? 0
     const isActive = activeChannelId === channel.id
@@ -28,7 +39,7 @@ export function Sidebar({ send }: Props) {
       <div
         key={channel.id}
         className={`channel-item ${isActive ? 'active' : ''}`}
-        onClick={() => setActiveChannelId(channel.id)}
+        onClick={() => handleChannelClick(channel.id)}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '7px 8px', gap: '6px' }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', minWidth: 0 }}>
@@ -45,24 +56,18 @@ export function Sidebar({ send }: Props) {
 
   return (
     <>
-      <div style={{
-        width: '240px',
-        flexShrink: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        background: 'rgba(13,10,26,0.85)',
-        borderRight: '1px solid rgba(255,255,255,0.07)',
-        backdropFilter: 'blur(20px)',
-      }}>
+      <div className="sidebar-panel">
 
         {/* Network header */}
         <div style={{
           padding: '16px',
           borderBottom: '1px solid rgba(255,255,255,0.07)',
           cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
             <div style={{
               width: '36px', height: '36px',
               borderRadius: '12px',
@@ -86,6 +91,13 @@ export function Sidebar({ send }: Props) {
               </div>
             </div>
           </div>
+          <button
+            className="sidebar-close-btn"
+            onClick={onMobileClose}
+            aria-label="Close sidebar"
+          >
+            ✕
+          </button>
         </div>
 
         <div style={{ padding: '8px' }}>
@@ -114,7 +126,6 @@ export function Sidebar({ send }: Props) {
             </div>
           ))}
 
-          {/* DMs section */}
           {dmList.length > 0 && (
             <div style={{ marginTop: '8px' }}>
               <div style={{
@@ -133,7 +144,7 @@ export function Sidebar({ send }: Props) {
                   <div
                     key={dm.userId}
                     className={`channel-item ${isActive ? 'active' : ''}`}
-                    onClick={() => useStore.getState().setActiveDmUserId(dm.userId)}
+                    onClick={() => handleDmClick(dm.userId)}
                     style={{
                       display: 'flex',
                       alignItems: 'center',

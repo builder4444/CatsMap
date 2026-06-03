@@ -8,9 +8,10 @@ import { normalizeMessage } from '../utils/message'
 
 interface Props {
   send: (msg: object) => void
+  onMobileMenuOpen?: () => void
 }
 
-export function ChatArea({ send }: Props) {
+export function ChatArea({ send, onMobileMenuOpen }: Props) {
   const {
     channels, activeChannelId, activeDmUserId, messages,
     setMessages, dmConversations, typingUsers, currentUser,
@@ -324,6 +325,13 @@ export function ChatArea({ send }: Props) {
         display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0,
         background: 'rgba(13,10,26,0.6)', backdropFilter: 'blur(12px)',
       }}>
+        <button
+          className="mobile-menu-btn"
+          onClick={onMobileMenuOpen}
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
         <div>
           <div style={{ fontWeight: 800, fontSize: '16px', color: '#f0e6ff' }}>{headerTitle}</div>
           {headerSub && <div style={{ fontSize: '12px', color: 'rgba(240,230,255,0.45)' }}>{headerSub}</div>}

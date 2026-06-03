@@ -258,3 +258,112 @@ body {
   min-width: 18px;
   text-align: center;
 }
+
+/* ── Hide Replit badge ───────────────────────────────────────────────────────*/
+#replit-badge,
+#replit-badge-v2,
+[id^="replit-badge"],
+[class^="replit-badge"],
+iframe[src*="replit.com/badge"] {
+  display: none !important;
+}
+
+/* ── Layout ──────────────────────────────────────────────────────────────────*/
+.chat-app-layout {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ── Sidebar panel ───────────────────────────────────────────────────────────*/
+.sidebar-panel {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: rgba(13,10,26,0.85);
+  border-right: 1px solid rgba(255,255,255,0.07);
+  backdrop-filter: blur(20px);
+}
+
+.sidebar-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: rgba(240,230,255,0.45);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.sidebar-close-btn:hover { color: #f0e6ff; }
+
+/* ── Mobile menu button ──────────────────────────────────────────────────────*/
+.mobile-menu-btn {
+  display: none;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  color: rgba(240,230,255,0.8);
+  font-size: 18px;
+  padding: 6px 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.mobile-menu-btn:hover { background: rgba(255,255,255,0.1); }
+
+/* ── Mobile sidebar backdrop ─────────────────────────────────────────────────*/
+.mobile-sidebar-backdrop {
+  display: none;
+}
+
+/* ── Mobile styles ───────────────────────────────────────────────────────────*/
+@media (max-width: 700px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .sidebar-close-btn {
+    display: block;
+  }
+
+  .sidebar-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 200;
+    width: 280px;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .mobile-sidebar-open .sidebar-panel {
+    transform: translateX(0);
+  }
+
+  .mobile-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 199;
+    backdrop-filter: blur(2px);
+  }
+
+  .member-list-panel {
+    display: none;
+  }
+
+  .chat-input::placeholder {
+    font-size: 13px;
+  }
+
+  .media-thumb {
+    max-width: 100%;
+  }
+}
