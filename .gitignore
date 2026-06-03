@@ -1,3 +1,6 @@
 stuff/server/target/
 stuff/desktop/dist/
 stuff/desktop/dist/linux-unpacked/
+stuff/web/node_modules/
+stuff/server/data/
+stuff/server/uploads/
