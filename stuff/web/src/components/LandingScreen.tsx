@@ -77,7 +77,8 @@ export function LandingScreen() {
       <div style={{ width: '100%', maxWidth: '440px', textAlign: 'center' }}>
         <div style={{ marginBottom: '32px' }}>
           <img
-  src="/logo.png"
+  src="/icon-remove.bg
+  .png"
   alt="CatsMap"
   style={{
     width: '96px',
