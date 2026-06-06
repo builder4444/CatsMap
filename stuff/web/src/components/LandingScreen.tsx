@@ -76,7 +76,15 @@ export function LandingScreen() {
       )}
       <div style={{ width: '100%', maxWidth: '440px', textAlign: 'center' }}>
         <div style={{ marginBottom: '32px' }}>
-          <div style={{ fontSize: '72px', lineHeight: 1, marginBottom: '12px', display: 'inline-block' }}>🐱</div>
+          <img
+  src="/logo.png"
+  alt="CatsMap"
+  style={{
+    width: '96px',
+    height: '96px',
+    marginBottom: '12px',
+  }}
+/>
           <h1 className="gradient-text" style={{ fontSize: '42px', fontWeight: 900, letterSpacing: '-1px', marginBottom: '8px' }}>
             CatsMap
           </h1>

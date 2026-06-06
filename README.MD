@@ -1,4 +1,7 @@
-# 🐱 CatsMap
+# CatsMap
+<p align="center">
+  <img src="logo.png" width="300" alt="CatsMap Logo">
+</p>
 
     ## Cute, private LAN chat — like Discord, but yours.
 
