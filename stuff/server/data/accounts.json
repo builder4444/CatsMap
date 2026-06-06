@@ -1,12 +1,22 @@
 {
   "accounts": [
     {
-      "id": "d8e74234-ef55-4b8b-ab50-4232f335ecfb",
-      "username": "admin",
-      "password_hash": "tmhgqsvfsgrygfva:bc820e7595aefaaa4d0a56448fbe50bfbb4fa4fd646e448aa0351a1d9e57e9ec",
-      "display_name": "admin",
+      "id": "f69cdb9b-2bfb-4d1c-b1d2-fbeb094a3ffc",
+      "username": "Dad",
+      "password_hash": "qcgdidkiugiugdqg:fb1ad9c734f63b3334e1a8a016753057bfdb84fb1113c242294f6e7376d3c0bc",
+      "display_name": "Dad",
       "avatar_emoji": "🐱",
-      "is_admin": true,
+      "is_admin": false,
+      "bio": "",
+      "custom_status": ""
+    },
+    {
+      "id": "40118aec-71d3-4bf9-8ed6-515214ef030f",
+      "username": "Pa",
+      "password_hash": "scjkbyeaigzkeeor:61ea0c2eae52d3d406ec6e4dc004deb51af31aa0bf3286830249310cb3ec7f07",
+      "display_name": "Pa",
+      "avatar_emoji": "🐱",
+      "is_admin": false,
       "bio": "",
       "custom_status": ""
     },
@@ -21,10 +31,40 @@
       "custom_status": ""
     },
     {
+      "id": "9b909ef3-ef99-4f60-a8ba-0f384e9c5f89",
+      "username": "Gam",
+      "password_hash": "ftwikwsegxpregza:a854baee94c658df5123af0747505344d9c58f1589487ae63104efceca7ea8cf",
+      "display_name": "Gam",
+      "avatar_emoji": "🐱",
+      "is_admin": false,
+      "bio": "",
+      "custom_status": ""
+    },
+    {
       "id": "5b621dba-ad2f-447e-b4cc-8962396de18b",
       "username": "Flynn",
       "password_hash": "ccitrcsmcnncdlzz:6d2abdc59b7245e21df7806df4394aaadef257c12012a480b060a9068dd1cd38",
       "display_name": "Flynn",
+      "avatar_emoji": "🐱",
+      "is_admin": true,
+      "bio": "",
+      "custom_status": ""
+    },
+    {
+      "id": "af7a2136-1add-4280-ab00-f4bb73ae1631",
+      "username": "mom",
+      "password_hash": "dlyhpbfvbtyebdli:075ffe41985bb3909cff27e65905fa20a796043f282d467722e90db549529499",
+      "display_name": "mom",
+      "avatar_emoji": "🐱",
+      "is_admin": false,
+      "bio": "",
+      "custom_status": ""
+    },
+    {
+      "id": "d8e74234-ef55-4b8b-ab50-4232f335ecfb",
+      "username": "admin",
+      "password_hash": "tmhgqsvfsgrygfva:bc820e7595aefaaa4d0a56448fbe50bfbb4fa4fd646e448aa0351a1d9e57e9ec",
+      "display_name": "admin",
       "avatar_emoji": "🐱",
       "is_admin": true,
       "bio": "",

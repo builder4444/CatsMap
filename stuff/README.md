@@ -15,10 +15,10 @@ CatsMap/
 ```
 
 ## Quick Start
-
+0. Setup An admin psswd
 1. Run the installer or `cd server && cargo run`
 2. Open `http://localhost:3000` on any device on the same WiFi
-3. Pick a cat name 🐱 and start chatting
+3. Login, Pick a cat name 🐱 and start chatting
 
 ## Share Codes
 
