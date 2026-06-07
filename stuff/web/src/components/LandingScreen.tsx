@@ -77,13 +77,14 @@ export function LandingScreen() {
       <div style={{ width: '100%', maxWidth: '440px', textAlign: 'center' }}>
         <div style={{ marginBottom: '32px' }}>
           <img
-  src="/icon-remove.bg
-  .png"
+  src="/icon_nobg.png"
   alt="CatsMap"
   style={{
-    width: '96px',
-    height: '96px',
-    marginBottom: '12px',
+    width: '200px',
+    height: '200px',
+    display: 'block',
+	margin: '0 auto 12px auto',
+	background: 'transparent',
   }}
 />
           <h1 className="gradient-text" style={{ fontSize: '42px', fontWeight: 900, letterSpacing: '-1px', marginBottom: '8px' }}>
