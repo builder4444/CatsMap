@@ -156,7 +156,7 @@ function App() {
         <div>
           <p className="eyebrow">Made by</p>
           <h2>CatsMap</h2>
-          <p>Built for local-first communities that want a friendly chat space they can host, understand, and share on their own terms.</p>
+          <p>Made By the CatsMap Communications Orginization for open source people and computer geeks like us</p>
         </div>
         <div className="madeByBadges" aria-label="Project highlights">
           <span>🐱 React + JSX</span>
