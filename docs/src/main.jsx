@@ -152,18 +152,11 @@ function App() {
         <pre><code>cd docs\nnpm install\nnpm run build</code></pre>
       </section>
 
-      <footer className="madeBy" aria-label="Made by CatsMap">
-        <div>
-          <p className="eyebrow">Made by</p>
-          <h2>CatsMap</h2>
-          <p>Made By the CatsMap Communications Orginization for open source people and computer geeks like us</p>
-        </div>
-        <div className="madeByBadges" aria-label="Project highlights">
-          <span>🐱 React + JSX</span>
-          <span>⚡ Vite</span>
-          <span>🚀 GitHub Pages ready</span>
-        </div>
-      </footer>
+      <section id="made by" className="made by" >
+      <h2>CatsMap is maintained by CCO or catsmapping communications orginization which maintains and improves catsmap and other products</h2>
+      </section>
+
+      <footer>Made for CatsMap crews. 🐾</footer>
     </>
   )
 }
