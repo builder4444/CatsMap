@@ -149,7 +149,7 @@ function App() {
         <ol>
           {deploySteps.map(step => <li key={step}>{step}</li>)}
         </ol>
-        <pre><code>cd stuff<br>./start.sh</code></pre>
+        <pre><code>cd stuff<br />./start.sh</code></pre>
       </section>
 
       <footer>Made for CatsMap crews. 🐾</footer>
