@@ -152,6 +152,10 @@ function App() {
         <pre><code>cd docs\nnpm install\nnpm run build</code></pre>
       </section>
 
+      <section id="made by" className="made by" >
+      <h2>CatsMap is maintained by CCO or catsmapping communications orginization which maintains and improves catsmap and other products</h2>
+      </section>
+
       <footer>Made for CatsMap crews. 🐾</footer>
     </>
   )
