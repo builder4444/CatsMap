@@ -145,11 +145,11 @@ function App() {
 
       <section id="deploy" className="section deploy">
         <p className="eyebrow">GitHub Pages</p>
-        <h2>Deploy this marketing site.</h2>
+        <h2>Deploy CatsMap Messaging.</h2>
         <ol>
           {deploySteps.map(step => <li key={step}>{step}</li>)}
         </ol>
-        <pre><code>cd website\nnpm install\nnpm run build</code></pre>
+        <pre><code>cd stuff<br>./start.sh</code></pre>
       </section>
 
       <footer>Made for CatsMap crews. 🐾</footer>
