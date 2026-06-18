@@ -23,3 +23,29 @@ Structure
 ## Share Codes
 
 Network admins can generate a Share Code in Settings. When two admins both enter each other's codes, their networks bridge and users can chat cross-network.
+
+## Marketing Website
+
+A separate React + JSX marketing website lives in `website/`. It highlights CatsMap features, includes screenshot-style product mockups, explains how to use CatsMap, and documents setup steps for GitHub Pages deployment.
+
+### Run locally
+
+```bash
+cd website
+npm install
+npm run dev
+```
+
+### Build for production
+
+```bash
+cd website
+npm run build
+```
+
+### Deploy with GitHub Pages
+
+1. Update `website/package.json` and replace `YOUR_GITHUB_USERNAME` in the `homepage` value.
+2. Push the repository to GitHub.
+3. In the GitHub repository settings, open **Pages** and set the source to **GitHub Actions**.
+4. Push to `main` or run the **Deploy CatsMap website to GitHub Pages** workflow manually.
