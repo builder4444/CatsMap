@@ -127,11 +127,7 @@ h3 { margin-bottom: 0.65rem; }
 .loginShot label { display: block; text-align: left; margin: 0.9rem 0 0.35rem; color: rgba(248,243,255,0.62); font-size: 0.78rem; font-weight: 900; text-transform: uppercase; }
 .loginShot button { width: 100%; margin-top: 1rem; border: 0; border-radius: 1rem; padding: 0.9rem; color: white; font-weight: 900; background: linear-gradient(135deg, #f472b6, #8b5cf6); }
 
-.deploy { border-radius: 2rem; padding: clamp(1.5rem, 5vw, 3rem); }
-pre { overflow: auto; border-radius: 1rem; padding: 1rem; background: #07050b; color: #f0abfc; }
-footer { padding: 3rem 1rem; text-align: center; color: rgba(248,243,255,0.55); }
-
-.CCO { border-radius: 2rem; padding: clamp(1.5rem, 5vw, 3rem); }
+.deploy, CCO { border-radius: 2rem; padding: clamp(1.5rem, 5vw, 3rem); }
 pre { overflow: auto; border-radius: 1rem; padding: 1rem; background: #07050b; color: #f0abfc; }
 footer { padding: 3rem 1rem; text-align: center; color: rgba(248,243,255,0.55); }
 
