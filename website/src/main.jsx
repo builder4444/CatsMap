@@ -144,7 +144,7 @@ function App() {
       </section>
 
       <section id="deploy" className="section deploy">
-        <p className="eyebrow">GitHub Pages</p>
+        <p className="eyebrow">CatsMap</p>
         <h2>Deploy CatsMap Messaging.</h2>
         <ol>
           {deploySteps.map(step => <li key={step}>{step}</li>)}
@@ -153,7 +153,7 @@ function App() {
       </section>
       
   <section id="CCO" className="section CCO">
-        <p className="eyebrow">GitHub Pages</p>
+        <p className="eyebrow">CatsMap</p>
         <h2>The CatsMap Communications Organization develops and tests CatsMap messaging and many other CatsMap Services.</h2>
       </section>
       <footer>CatsMap; We'll point you in the right direction</footer>
