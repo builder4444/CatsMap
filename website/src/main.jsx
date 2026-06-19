@@ -151,8 +151,12 @@ function App() {
         </ol>
         <pre><code>cd stuff<br />./start.sh</code></pre>
       </section>
-
-      <footer>Made for CatsMap crews. 🐾</footer>
+      
+  <section id="CCO" className="section CCO">
+        <p className="eyebrow">GitHub Pages</p>
+        <h2>The CatsMap Communications Organization develops and tests CatsMap messaging and many other CatsMap Services.</h2>
+      </section>
+      <footer>CatsMap; We'll point you in the right direction</footer>
     </>
   )
 }
