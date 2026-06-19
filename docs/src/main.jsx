@@ -152,7 +152,7 @@ function App() {
         <pre><code>cd docs\nnpm install\nnpm run build</code></pre>
       </section>
 
-      <footer className="madeBy" aria-label="Made by CatsMap">
+      <section id="made-by" className="section deploy cco-box" aria-label="Made by CatsMap">
         <div>
           <p className="eyebrow">Made by</p>
           <h2>CatsMap</h2>
@@ -163,6 +163,7 @@ function App() {
           <span>⚡ Vite</span>
           <span>🚀 GitHub Pages ready</span>
         </div>
+      </section>
       </footer>
     </>
   )
