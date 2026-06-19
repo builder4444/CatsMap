@@ -33,10 +33,10 @@ const setupSteps = [
 ]
 
 const deploySteps = [
-  'Edit docs/package.json and replace YOUR_GITHUB_USERNAME in the homepage field.',
+  'Edit website/package.json and replace YOUR_GITHUB_USERNAME in the homepage field.',
   'Push the repository to GitHub.',
   'In GitHub, open Settings → Pages and choose GitHub Actions as the source.',
-  'The included workflow builds the docs folder and publishes it to GitHub Pages on every push to main.',
+  'The included workflow builds the website folder and publishes it to GitHub Pages on every push to main.',
 ]
 
 function ChatScreenshot() {
@@ -144,26 +144,19 @@ function App() {
       </section>
 
       <section id="deploy" className="section deploy">
-        <p className="eyebrow">GitHub Pages</p>
-        <h2>Deploy this marketing site.</h2>
+        <p className="eyebrow">CatsMap</p>
+        <h2>Deploy CatsMap Messaging.</h2>
         <ol>
           {deploySteps.map(step => <li key={step}>{step}</li>)}
         </ol>
-        <pre><code>cd docs\nnpm install\nnpm run build</code></pre>
+        <pre><code>cd stuff<br />./start.sh</code></pre>
       </section>
-
-      <footer className="madeBy" aria-label="Made by CatsMap">
-        <div>
-          <p className="eyebrow">Made by</p>
-          <h2>CatsMap</h2>
-          <p>Built for local-first communities that want a friendly chat space they can host, understand, and share on their own terms.</p>
-        </div>
-        <div className="madeByBadges" aria-label="Project highlights">
-          <span>🐱 React + JSX</span>
-          <span>⚡ Vite</span>
-          <span>🚀 GitHub Pages ready</span>
-        </div>
-      </footer>
+      
+  <section id="CCO" className="section CCO">
+        <p className="eyebrow">CatsMap</p>
+        <h2>The CatsMap Communications Organization develops and tests CatsMap messaging and many other CatsMap Services.</h2>
+      </section>
+      <footer>CatsMap; We'll point you in the right direction</footer>
     </>
   )
 }
